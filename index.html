@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waluistream - Premium Crypto-Powered Streaming</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0A0A0A;
+            --secondary-bg: #161616;
+            --card-bg: #1E1E1E;
+            --accent-cyan: #00F5FF;
+            --accent-green: #00FFA3;
+            --accent-purple: #8A2BE2;
+            --text-white: #FFFFFF;
+            --text-gray: #CCCCCC;
+            --text-light: #999999;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-white);
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 10, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent-cyan);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--text-white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 160px 0 100px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 400"><rect fill="%230A0A0A" width="800" height="400"/><path fill="%23001111" d="M0,200 L800,200 L800,400 L0,400 Z"/><circle fill="%2300F5FF" cx="400" cy="200" r="100" opacity="0.05"/></svg>');
+            background-size: cover;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            font-size: 1.1rem;
+        }
+        
+        .hero-cta {
+            margin-top: 30px;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: var(--secondary-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--accent-cyan);
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Pricing Section */
+        .pricing {
+            padding: 100px 0;
+            background-color: var(--primary-bg);
+            text-align: center;
+        }
+        
+        .pricing-card {
+            background: linear-gradient(135deg, var(--card-bg), #252525);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 245, 255, 0.1);
+        }
+        
+        .pricing-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+        
+        .pricing-subtitle {
+            color: var(--accent-green);
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+        
+        .price-amount {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--text-white);
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+        
+        .price-interval {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        .crypto-badges {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+        
+        .crypto-badge {
+            background-color: rgba(0, 245, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: 500;
+        }
+        
+        /* How It Works */
+        .how-it-works {
+            padding: 100px 0;
+            background-color: var(--secondary-bg);
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+        
+        .step {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--text-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Trust & Privacy */
+        .trust {
+            padding: 100px 0;
+            background-color: var(--primary-bg);
+        }
+        
+        .trust-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .trust-points {
+            text-align: left;
+            max-width: 600px;
+            margin: 40px auto;
+        }
+        
+        .trust-point {
+            margin-bottom: 25px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .trust-point::before {
+            content: '✓';
+            color: var(--accent-green);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        /* Final CTA */
+        .final-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan));
+            text-align: center;
+            color: var(--text-white);
+        }
+        
+        .final-cta h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+        
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .header-container {
+                padding: 0 20px;
+            }
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">Walui<span>Stream</span></a>
+            <nav class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#trust">Privacy</a>
+            </nav>
+            <button class="cta-button">Get Started</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>The World is Streaming. Unlock It.</h1>
+            <p class="hero-subtitle">Endless Content. Total Privacy. Powered by Crypto.</p>
+            <p class="hero-content">The End of Buffering. The Start of Freedom. Tired of the same old algorithms? Geo-blocks? Rising subscription fees? Welcome to Waluistream – the streaming service for a new generation. Access over 60,000 live TV channels from every corner of the globe, all in stunning HD, completely ad-free.</p>
+            <p class="hero-subtitle">Stream Without Borders. Pay Without Trace.</p>
+            <div class="hero-cta">
+                <button class="cta-button pulse">Subscribe Now with Crypto</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Why The Future Chooses Waluistream</h2>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3 class="feature-title">True Global Access</h3>
+                    <p>From Premier League football to Bollywood hits, anime to award-winning docs. If it's on TV, it's on Waluistream. No restrictions.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3 class="feature-title">Your Privacy, Guaranteed</h3>
+                    <p>We never require personal data. No name. No email. No credit card. Your viewing is your business alone.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3 class="feature-title">Premium, Ad-Free Streams</h3>
+                    <p>Immerse yourself in crystal-clear HD and Full HD content. Zero ads. Zero interruptions. Pure entertainment.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-tv"></i>
+                    </div>
+                    <h3 class="feature-title">Watch Anywhere, Instantly</h3>
+                    <p>Download our app on your Smart TV, Phone, PC, or Tablet. Start streaming in minutes.</p>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3 class="feature-title">Radical Affordability</h3>
+                    <p>All of this for one simple price. No hidden fees. No surprise price hikes. Ever.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">Simple. Secure. Six Months of Freedom.</h2>
+            <div class="pricing-card fade-in">
+                <p class="pricing-subtitle">One Plan. One Payment. Total Access.</p>
+                <div class="price-amount">$60 / 6 Months</div>
+                <p class="price-interval">That's just $10/month for everything Waluistream offers.</p>
+                <p>Pay once. Stream freely for half a year. We accept BTC, ETH, USDT, and other major cryptocurrencies.</p>
+                <div class="crypto-badges">
+                    <span class="crypto-badge">BTC</span>
+                    <span class="crypto-badge">ETH</span>
+                    <span class="crypto-badge">USDT</span>
+                    <span class="crypto-badge">LTC</span>
+                    <span class="crypto-badge">XRP</span>
+                </div>
+                <button class="cta-button">Pay with Crypto & Start Streaming</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Join the Stream in 3 Steps</h2>
+            <div class="steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Pay</h3>
+                    <p>Select your 6-month plan. Send your $60 USD equivalent in crypto.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Access</h3>
+                    <p>Receive your unique, anonymous stream key instantly.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Watch</h3>
+                    <p>Enter your key on any device. Enjoy the world's content.</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 50px; font-weight: 600; color: var(--accent-cyan);">No accounts. No passwords. No hassle.</p>
+        </div>
+    </section>
+
+    <!-- Trust & Privacy Section -->
+    <section class="trust" id="trust">
+        <div class="container">
+            <h2 class="section-title">Your Viewing History is Not a Commodity.</h2>
+            <div class="trust-content fade-in">
+                <p>We believe your right to privacy is non-negotiable. Unlike other services that track, profile, and sell your data, we built a system where it's impossible.</p>
+                <div class="trust-points">
+                    <div class="trust-point">
+                        <h3>Anonymous Access</h3>
+                        <p>We don't know who you are. And we don't want to.</p>
+                    </div>
+                    <div class="trust-point">
+                        <h3>Secure Crypto Payments</h3>
+                        <p>Your financial data stays with you. We only see a confirmed transaction.</p>
+                    </div>
+                    <div class="trust-point">
+                        <h3>No Logs, No Tracking</h3>
+                        <p>We designed our network to have no memory of what you watch. It's true digital freedom.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Cut the Cords. Break the Algorithms.</h2>
+            <p>The world's entertainment is waiting. Stop overpaying for fragmented subscriptions. Start streaming without limits.</p>
+            <button class="cta-button" style="background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);">Subscribe with Crypto Now and Unlock 60,000+ Channels</button>
+            <p style="margin-top: 30px; font-style: italic;">The Future of Streaming is Decentralized. The Future is Waluistream.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Features</a>
+                <a href="#">Pricing</a>
+                <a href="#">How It Works</a>
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Support</a>
+            </div>
+            <p class="copyright">© 2025 Waluistream. All rights reserved. The future of streaming is here.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for elements with fade-in class
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    
+                    if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Check on load
+            checkFade();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkFade);
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
