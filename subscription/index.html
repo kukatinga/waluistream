@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to FLX - Premium Crypto-Powered Streaming</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #0A0A0A;
+            --secondary-bg: #161616;
+            --card-bg: #1E1E1E;
+            --accent-cyan: #00F5FF;
+            --accent-green: #00FFA3;
+            --accent-purple: #8A2BE2;
+            --text-white: #FFFFFF;
+            --text-gray: #CCCCCC;
+            --text-light: #999999;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-white);
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(10, 10, 10, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 245, 255, 0.1);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-white);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--accent-cyan);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+        
+        .cta-button {
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--text-white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+        
+        /* Subscription Hero */
+        .subscription-hero {
+            padding: 160px 0 80px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 400"><rect fill="%230A0A0A" width="800" height="400"/><path fill="%23001111" d="M0,200 L800,200 L800,400 L0,400 Z"/><circle fill="%2300F5FF" cx="400" cy="200" r="100" opacity="0.05"/></svg>');
+            background-size: cover;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .subscription-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(0, 245, 255, 0.1) 0%, transparent 70%);
+        }
+        
+        .subscription-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+        
+        .subscription-subtitle {
+            font-size: 1.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        
+        /* Subscription Process */
+        .subscription-process {
+            padding: 80px 0;
+            background-color: var(--secondary-bg);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 900px;
+            margin: 0 auto;
+            gap: 20px;
+        }
+        
+        .step {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+            color: var(--text-white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 0 auto 20px;
+        }
+        
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Payment Options */
+        .payment-options {
+            padding: 80px 0;
+            background-color: var(--primary-bg);
+        }
+        
+        .crypto-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .crypto-option {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            cursor: pointer;
+        }
+        
+        .crypto-option:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent-cyan);
+        }
+        
+        .crypto-option.selected {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.3);
+        }
+        
+        .crypto-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-cyan);
+        }
+        
+        .crypto-name {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Payment Form */
+        .payment-form-section {
+            padding: 80px 0;
+            background-color: var(--secondary-bg);
+            display: none;
+        }
+        
+        .payment-form {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 245, 255, 0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: var(--secondary-bg);
+            color: var(--text-white);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+        }
+        
+        .price-summary {
+            background-color: var(--secondary-bg);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .price-line {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .crypto-amount {
+            font-weight: 600;
+            color: var(--accent-cyan);
+        }
+        
+        .wallet-address {
+            background-color: var(--secondary-bg);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            word-break: break-all;
+            font-size: 0.9rem;
+        }
+        
+        .timer {
+            text-align: center;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--accent-cyan);
+        }
+        
+        /* Confirmation */
+        .confirmation {
+            padding: 100px 0;
+            background-color: var(--primary-bg);
+            text-align: center;
+            display: none;
+        }
+        
+        .confirmation-icon {
+            font-size: 4rem;
+            color: var(--accent-green);
+            margin-bottom: 30px;
+        }
+        
+        /* FAQ Section */
+        .faq {
+            padding: 80px 0;
+            background-color: var(--secondary-bg);
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            color: var(--text-light);
+            display: none;
+        }
+        
+        .faq-answer.active {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 60px 0 30px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent-cyan);
+        }
+        
+        .copyright {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .subscription-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subscription-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+                gap: 40px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .header-container {
+                padding: 0 20px;
+            }
+            
+            .crypto-options {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="index.html" class="logo">FLX<span>Stream</span></a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#trust">Privacy</a>
+            </nav>
+            <button class="cta-button" onclick="window.location.href='index.html'">Back to Home</button>
+        </div>
+    </header>
+
+    <!-- Subscription Hero -->
+    <section class="subscription-hero">
+        <div class="container">
+            <h1>Subscribe to FLXstream</h1>
+            <p class="subscription-subtitle">6 Months of Unlimited Streaming for Just $60</p>
+            <p>Join thousands of users enjoying borderless, private streaming powered by cryptocurrency</p>
+        </div>
+    </section>
+
+    <!-- Subscription Process -->
+    <section class="subscription-process">
+        <div class="container">
+            <h2 class="section-title">Simple 3-Step Subscription</h2>
+            <div class="steps">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Choose Crypto</h3>
+                    <p>Select your preferred cryptocurrency</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Send Payment</h3>
+                    <p>Transfer the exact amount to our wallet</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Get Access</h3>
+                    <p>Receive your unique streaming key instantly</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Options -->
+    <section class="payment-options">
+        <div class="container">
+            <h2 class="section-title">Select Your Payment Method</h2>
+            <div class="crypto-options">
+                <div class="crypto-option" data-crypto="BTC" data-rate="0.0012">
+                    <div class="crypto-icon">
+                        <i class="fab fa-bitcoin"></i>
+                    </div>
+                    <h3 class="crypto-name">Bitcoin (BTC)</h3>
+                    <p>Fast & secure</p>
+                </div>
+                <div class="crypto-option" data-crypto="ETH" data-rate="0.021">
+                    <div class="crypto-icon">
+                        <i class="fab fa-ethereum"></i>
+                    </div>
+                    <h3 class="crypto-name">Ethereum (ETH)</h3>
+                    <p>Widely accepted</p>
+                </div>
+                <div class="crypto-option" data-crypto="USDT" data-rate="60">
+                    <div class="crypto-icon">
+                        <i class="fas fa-dollar-sign"></i>
+                    </div>
+                    <h3 class="crypto-name">Tether (USDT)</h3>
+                    <p>Stable value</p>
+                </div>
+                <div class="crypto-option" data-crypto="LTC" data-rate="3.8">
+                    <div class="crypto-icon">
+                        <i class="fab fa-litecoin"></i>
+                    </div>
+                    <h3 class="crypto-name">Litecoin (LTC)</h3>
+                    <p>Low fees</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Form Section -->
+    <section class="payment-form-section" id="payment-form">
+        <div class="container">
+            <h2 class="section-title">Complete Your Payment</h2>
+            <div class="payment-form">
+                <div class="timer" id="payment-timer">
+                    <i class="fas fa-clock"></i> Price valid for: <span id="timer">15:00</span>
+                </div>
+                
+                <div class="price-summary">
+                    <div class="price-line">
+                        <span>6-Month Subscription:</span>
+                        <span>$60.00 USD</span>
+                    </div>
+                    <div class="price-line">
+                        <span>Network fee:</span>
+                        <span>$0.00</span>
+                    </div>
+                    <div class="price-total">
+                        <span>Total:</span>
+                        <span>$60.00 USD</span>
+                    </div>
+                    <div class="price-line">
+                        <span>Amount in <span id="selected-crypto">BTC</span>:</span>
+                        <span class="crypto-amount" id="crypto-amount">0.0012 BTC</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Wallet Address</label>
+                    <div class="wallet-address" id="wallet-address">
+                        1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa
+                    </div>
+                    <button class="cta-button" style="width: 100%" onclick="copyAddress()">
+                        <i class="fas fa-copy"></i> Copy Address
+                    </button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="transaction-hash">Transaction Hash (after payment)</label>
+                    <input type="text" id="transaction-hash" placeholder="Enter your transaction hash here">
+                </div>
+                
+                <button class="cta-button" style="width: 100%" onclick="confirmPayment()">
+                    Confirm Payment
+                </button>
+                
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+                    <i class="fas fa-shield-alt"></i> Your payment is secure and private
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Section -->
+    <section class="confirmation" id="confirmation">
+        <div class="container">
+            <div class="confirmation-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 class="section-title">Payment Received!</h2>
+            <p>Your subscription is now active. Here is your unique streaming key:</p>
+            <div class="wallet-address" style="max-width: 500px; margin: 30px auto; font-weight: bold;">
+                FLX-8XK2-9B3C-7D4E-5F6G
+            </div>
+            <p>Use this key to access FLXstream on any supported device.</p>
+            <button class="cta-button" onclick="window.location.href='index.html'">
+                Return to Homepage
+            </button>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How long does it take to confirm my payment? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Bitcoin transactions typically take 10-30 minutes to confirm. Ethereum may take 2-5 minutes, and other cryptocurrencies vary. You'll receive your streaming key as soon as we detect your payment on the blockchain.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    What if I send the wrong amount? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    If you send less than the required amount, we'll notify you and give you 24 hours to send the remainder. If you send more, we'll automatically apply the excess to extend your subscription.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    How do I use my streaming key? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    After downloading the FLXstream app on your preferred device, you'll be prompted to enter your streaming key. This key grants you access to all content for the duration of your subscription.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFaq(this)">
+                    Can I get a refund? <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Due to the anonymous nature of our service and the irreversibility of cryptocurrency transactions, we generally do not offer refunds. However, if you experience technical issues that we cannot resolve, we may offer credit or extensions.
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#features">Features</a>
+                <a href="index.html#pricing">Pricing</a>
+                <a href="index.html#how-it-works">How It Works</a>
+                <a href="index.html#trust">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Support</a>
+            </div>
+            <p class="copyright">© 2025 FLXstream. All rights reserved. The future of streaming is here.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple animation for elements with fade-in class
+        document.addEventListener('DOMContentLoaded', function() {
+            const fadeElements = document.querySelectorAll('.fade-in');
+            
+            function checkFade() {
+                fadeElements.forEach(element => {
+                    const elementTop = element.getBoundingClientRect().top;
+                    const elementBottom = element.getBoundingClientRect().bottom;
+                    
+                    if (elementTop < window.innerHeight - 100 && elementBottom > 0) {
+                        element.classList.add('visible');
+                    }
+                });
+            }
+            
+            // Check on load
+            checkFade();
+            
+            // Check on scroll
+            window.addEventListener('scroll', checkFade);
+            
+            // Crypto option selection
+            const cryptoOptions = document.querySelectorAll('.crypto-option');
+            cryptoOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    cryptoOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    
+                    // Get crypto data
+                    const crypto = this.getAttribute('data-crypto');
+                    const rate = this.getAttribute('data-rate');
+                    
+                    // Update payment form
+                    document.getElementById('selected-crypto').textContent = crypto;
+                    document.getElementById('crypto-amount').textContent = `${rate} ${crypto}`;
+                    
+                    // Show payment form
+                    document.querySelector('.payment-form-section').style.display = 'block';
+                    
+                    // Scroll to payment form
+                    document.getElementById('payment-form').scrollIntoView({behavior: 'smooth'});
+                    
+                    // Start payment timer
+                    startTimer(15 * 60); // 15 minutes in seconds
+                });
+            });
+        });
+        
+        // Toggle FAQ answers
+        function toggleFaq(element) {
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('active');
+            
+            const icon = element.querySelector('i');
+            if (icon.classList.contains('fa-chevron-down')) {
+                icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+            } else {
+                icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        }
+        
+        // Copy wallet address
+        function copyAddress() {
+            const address = document.getElementById('wallet-address').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                alert('Wallet address copied to clipboard!');
+            });
+        }
+        
+        // Confirm payment
+        function confirmPayment() {
+            const txHash = document.getElementById('transaction-hash').value;
+            if (!txHash) {
+                alert('Please enter your transaction hash');
+                return;
+            }
+            
+            // Show confirmation
+            document.getElementById('confirmation').style.display = 'block';
+            document.getElementById('payment-form').scrollIntoView({behavior: 'smooth'});
+        }
+        
+        // Payment timer
+        function startTimer(duration) {
+            let timer = duration, minutes, seconds;
+            const timerElement = document.getElementById('timer');
+            
+            const countdown = setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                
+                timerElement.textContent = minutes + ":" + seconds;
+                
+                if (--timer < 0) {
+                    clearInterval(countdown);
+                    timerElement.textContent = "EXPIRED";
+                    timerElement.style.color = "#ff4757";
+                    
+                    // Refresh crypto rates
+                    alert('The price quote has expired. Please reselect your cryptocurrency for updated rates.');
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
